@@ -13,6 +13,7 @@ import com.udemy.cursoSpringIonic.domain.Cidade;
 import com.udemy.cursoSpringIonic.domain.Cliente;
 import com.udemy.cursoSpringIonic.domain.Endereco;
 import com.udemy.cursoSpringIonic.domain.Estado;
+import com.udemy.cursoSpringIonic.domain.ItemPedido;
 import com.udemy.cursoSpringIonic.domain.Pagamento;
 import com.udemy.cursoSpringIonic.domain.PagamentoComBoleto;
 import com.udemy.cursoSpringIonic.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.udemy.cursoSpringIonic.repositories.CidadeRepository;
 import com.udemy.cursoSpringIonic.repositories.ClienteRepository;
 import com.udemy.cursoSpringIonic.repositories.EnderecoRepository;
 import com.udemy.cursoSpringIonic.repositories.EstadoRepository;
+import com.udemy.cursoSpringIonic.repositories.ItemPedidoRepository;
 import com.udemy.cursoSpringIonic.repositories.PagamentoRepository;
 import com.udemy.cursoSpringIonic.repositories.PedidoRepository;
 import com.udemy.cursoSpringIonic.repositories.ProdutoRepository;
@@ -56,6 +58,8 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
 	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -122,5 +126,19 @@ public class DemoApplication implements CommandLineRunner {
 		 
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2)); 
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2)); 
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+
 	}
 }
