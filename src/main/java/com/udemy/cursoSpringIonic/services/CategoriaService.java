@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.udemy.cursoSpringIonic.domain.Categoria;
+import com.udemy.cursoSpringIonic.dto.CategoriaDTO;
 import com.udemy.cursoSpringIonic.repositories.CategoriaRepository;
 import com.udemy.cursoSpringIonic.services.exceptions.DataIntegrityException;
 import com.udemy.cursoSpringIonic.services.exceptions.ObjectNotFoundException;
@@ -57,6 +58,11 @@ public class CategoriaService {
 				orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
+	public Categoria fromDTO(CategoriaDTO objDTO) {
+		return new Categoria(objDTO.getId(),objDTO.getNome());
+	}
+	
 //	public Categoria buscar(Integer id) {
 //		Optional<Categoria> obj = repo.findById(id);
 //		return obj.orElse(null);
