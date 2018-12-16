@@ -7,7 +7,10 @@ import com.udemy.cursoSpringIonic.domain.Categoria;
 
 //Já implementa todos os métodos pra acesso a dados: salvar, deletar, atualizar, da Categoria
 //Dentro das chaves temos que passar o tipo do objeto a ser manipulado e o tipo da sua chave
+
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
+	
+	
 
 }
