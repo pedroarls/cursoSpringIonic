@@ -1,4 +1,4 @@
-package com.nelioalves.cursomc.services.validation;
+package com.udemy.cursoSpringIonic.services.validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +37,10 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
 		
 		List<FieldMessage> list = new ArrayList<>();
 		
-//		Cliente aux = repo.findByEmail(objDto.getEmail());
-//		if (aux != null && !aux.getId().equals(uriId)) {
-//			list.add(new FieldMessage("email", "Email já existente"));
-//		}
+		Cliente aux = repo.findByEmail(objDto.getEmail());
+		if (aux != null && !aux.getId().equals(uriId)) {
+			list.add(new FieldMessage("email", "Email já existente"));
+		}
 
 		for (FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();
