@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.nelioalves.cursomc.domain.ItemPedido;
 
 @Entity
 public class Pedido implements Serializable{
